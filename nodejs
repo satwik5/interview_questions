@@ -208,3 +208,24 @@ and then triggers a callback function when one of those events is detected.
 				connection successful.
 				data received successfully.
 				Program Ended.
+
+
+const fs = require('fs');
+const word='neurotags';
+const readStream = fs.createReadStream('./file.txt');
+const data = [];
+
+readStream.on('data', (chunk) => {
+    data.push(chunk);
+	
+    console.log('data :', chunk, chunk.length);
+	console.log(data.includes(word));
+});
+
+readStream.on('end', () => {
+    console.log('end :', Buffer.concat(data).toString());
+})
+
+readStream.on('error', (err) => {
+    console.log('error :', err)
+})
