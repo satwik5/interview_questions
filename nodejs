@@ -1,0 +1,210 @@
+---------difference between JS and Node JS
+JS is a programming language
+JS is client side activity for web applications
+running Engine--> firefox, chrone v8, Safari etc
+
+Node Js is interpretor and environment for JavaScript
+Node Js is server side platform built on Google chrome Engine.
+It used for non-blocking operations
+Node Js holds of js libraries.
+running engine--> v8 google chrome engine
+
+----------What is Node JS
+its a power JS runtime JS library that runs javacsript outside the browser
+its an open source server environment
+Developed on google chrome engine.
+creating serving side web applications
+compiles directly in the native machine code
+Right pick for data intensive real-time applications
+its an asynchronous programming
+
+----------what node js do ?
+basically it can generate dynamic page content 
+creates Read Create Update Open read write the files on servers.
+node js collects form data 
+node js add delete modify in Data base
+
+------------what are beneifts using node js?
+Open source server environment
+simple and fast
+it uses for asynchronous programming
+its a single threaded 
+no buffering 
+cross platform
+
+--------difference btwn Angular and NodeJs?
+Angular is open source web application development framework
+Angular is a typeScript based
+Mainly to build SPA
+Angular is itself a framework
+Interavtive web applications 
+spliting up an app in to components MVVM stucture
+Suitable for real time applications
+
+Node JS Open source server environment
+Node Js is written on C, C++, JavaScript languages
+Mainly for building server side netwroking applcaitipns 
+	where we have hardware interactions, software interactions, I/O functionlaities
+Node has many external framekworks like express js etc
+based on interactions node js provides the functionlaities
+Helpful in generting Databse queries
+suitable where it needs more scalable and faster
+
+---------why node js is single threaded?
+it supports asynchronous programming
+with asynchronous programming, it performs much faster and more scalable in web loads.
+its a non-blocking 
+
+---------how do node js works ?
+node js is a virtual machine that uses JS as scripting language and runs on V8 engine
+it works on a single threaded even loop and non-blocking I/O which provides high rate as it can handle number of concurrent requests.
+by using http module, node js can run on any stand alone web server.
+
+--------- where node js can be used?
+real time web applcaitions
+distributes systems
+network applcaitions
+general purpose applcaitions
+
+----------how many types of API functions are there in node JS?
+there are only two types of fucntions in node JS
+Asyncronous and Synchronous
+
+what is difference btwn Asyncronous and non-blocking?
+asynchronous is like taking the http requests and doesnt wait for responses
+non-blocking is like checking the I/O operations and gives responses
+
+------------what is package.json?
+its a heart of full node js project
+basically its a manifest file where it defines the project
+author, name, dependencies, engines, version, scripts
+
+----------what is call back?
+Callback is an asynchronous equivalent for a function. 
+A callback function is called at the completion of a given task. 
+Node makes heavy use of callbacks. All the APIs of Node are written in such a way that they support callbacks.
+	synchronous
+		var fs = require("fs");
+		var data = fs.readFileSync('input.txt');
+		console.log(data.toString());
+		console.log("Program Ended");
+	asynchronous
+		var fs = require("fs");
+		fs.readFile('input.txt', function (err, data) {
+		   if (err) return console.error(err);
+		   console.log(data.toString());
+		});
+
+---------Event Driven programming ?
+its a programming approach that heavily uses of events for triggering the various functions
+it mainly follows the publish-subscribe pattern
+simply initiates its variable and declares functions
+
+----------Event loop in node js
+event loop handles all the asynchronous callbacks in applcaition
+EventEmitters--> Events <--Event loop-->Even Handles 
+
+
+-----REPL- Read Eval Print Loop also knows as Node shell 
+
+------List down the tasks which should be done via asynchronous
+i/o operations 
+heavy computations 
+
+----------control flow controls the function call in node js?
+request of execution or control the order of execution
+gather information 
+limit concurrancy
+invoke the next function of next step
+
+--------test pyramid
+Unit Tests--> Integration tests--> end to end
+
+-- what is error-first callback 
+err is the first paramater and call back happens when error occurs 
+if no error occurs then it goes to 2nd paramater and send response
+
+--------what is v8 engine?
+engine used in node js implementation was originally developed for chrome browser
+
+--------what is reactor pattern in node js?
+Reactor pattern is a concept of non-blocking I/O operations
+This pattern provides a handler that is associated with I/O operations
+as soon as I/O request is generated, it is then submitted to demultiplexer
+This demultiplexer is a notification interface which is capable of handling concurrancy in no-blocking I/O mode.
+it also hepls in collecting each and every request in the form of an event and then place each event in queue
+this is resulting in the generation of Event Queue.
+
+--------what is differnce btwn front end back end development?
+front end is markup languages like HTML CSS JS
+back end uses programming like python java nodejs
+
+frontend based on asynchronous requests
+backend is a server architecture
+
+front end is better accessibility 
+back end is enhanced security
+
+---------what is crypto
+The Node.js Crypto module supports cryptography. It provides cryptographic functionality that includes 
+a set of wrappers for open SSL's hash HMAC, cipher, decipher, sign and verify functions.
+***cipher
+const crypto = require('crypto');  
+const cipher = crypto.createCipher('aes192', 'a password');  
+var encrypted = cipher.update('Hello JavaTpoint', 'utf8', 'hex');  
+encrypted += cipher.final('hex');  
+console.log(encrypted);   
+***decipher
+const crypto = require('crypto');  
+const decipher = crypto.createDecipher('aes192', 'a password');  
+var encrypted = '4ce3b761d58398aed30d5af898a0656a3174d9c7d7502e781e83cf6b9fb836d5';  
+var decrypted = decipher.update(encrypted, 'hex', 'utf8');  
+decrypted += decipher.final('utf8');  
+console.log(decrypted);  
+
+
+-----------Event-driven programming
+Node.js uses events heavily and it is also one of the reasons why Node.js 
+is pretty fast compared to other similar technologies. 
+As soon as Node starts its server, it simply initiates its variables, 
+declares functions and then simply waits for the event to occur.
+
+Although events look quite similar to callbacks, the difference lies in the fact that callback functions are called 
+when an asynchronous function returns its result, whereas event handling works on the observer pattern. 
+The functions that listen to events act as Observers. Whenever an event gets fired, its listener function starts executing. 
+Node.js has multiple in-built events available through events module and EventEmitter class 
+which are used to bind events and event-listeners
+In an event-driven application, there is generally a main loop that listens for events, 
+and then triggers a callback function when one of those events is detected.
+
+	// Import events module
+	var events = require('events');
+
+	// Create an eventEmitter object
+	var eventEmitter = new events.EventEmitter();
+
+	// Create an event handler as follows
+	var connectHandler = function connected() {
+	   console.log('connection succesful.');
+	  
+	   // Fire the data_received event 
+	   eventEmitter.emit('data_received');
+	}
+
+	// Bind the connection event with the handler
+	eventEmitter.on('connection', connectHandler);
+	 
+	// Bind the data_received event with the anonymous function
+	eventEmitter.on('data_received', function() {
+	   console.log('data received succesfully.');
+	});
+
+	// Fire the connection event 
+	eventEmitter.emit('connection');
+
+	console.log("Program Ended.");
+	
+			output &&&&&&
+				connection successful.
+				data received successfully.
+				Program Ended.
