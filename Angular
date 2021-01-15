@@ -1,0 +1,426 @@
+----------What is Angular?
+Angular is a TypeScript based open source front end web application framework. 
+Angular is a Binding Framework which binds the HTML UI and JavaScript Model.
+Especially it is used for building SPA-single page applications.
+it also has lot of other features like HTTP, DI, I/O builtin frameworks
+Angular provides builtin features for animations, toolbars, navigations, http services, menus etc.
+TypeScript is a super set of JavaScript.
+
+
+-------------explain the architecture or Angular
+	1.view <--> 2.component <--> 3.modules  4.bindings(between view and components) 5.directives 6.services 7.DI
+	
+-------------Differences between Angular JS and Angular?
+Angular JS: 
+	Architecture based on MVC structure
+	It is a JavaScript based applicaiton.
+	Not a mobile friendly.
+	Lazy loading not supported
+	^^^Cannot run on server side
+	^^^ not SEO supported
+Angular: 
+	Architecture based on Controller struture. MVVM structure
+	It is a TypeScript based applicaiton.
+	Developed considering mobile platform. (ionic angular)
+	Lazy loading supports
+	^^^Can run on server side as well
+	^^^SEO supported (SEARCH ENGINE Optimization)
+	
+------------What is TypeScript?
+TypeScript is a super set of JavaScript
+it adds types to javascript.
+one of the biggest advantange is typescript provides OOP finally converted to js language. productivity and quality increases
+Usually Javascript is dynamic typing and supports non strict mode with global variables and having moer error prones.
+example:
+JS: function calculateTotalPrice(quantity, unitPrice) -- passing parameters are ('two', 3) return NAN instead of throwing error
+TS: function calculateTotalPrice(quantity:number, unitPrice:number)-- params ('two', 2) throws compilation error.
+In JS we get most  of the errors during run time but in TS we get errors in compile time itself.
+TypeScript transpiles the code to prefered version of JavaScript.
+Angular is primarily written on TypeScript.
+TypeScript makes such compile easy, as it supports static typing, less error prone and supports OOP concepts and structured code.
+
+^^^extends the functionality with classes, async await, enums, interfaces and many other.
+
+----------What are the key components of Angular?
+Components: These are basic building blocks of angular applicaiton to control HTML views
+--> its a mediator between models and views, contains templates, css, modules
+	-->Generally components consists of html page, ts page, css page and spec.ts page
+	-->Html file is having the skeleton of web applcation, and dynamic view based on code. (Templates)
+	-->CSS file for styling the code.
+	-->TS file is main file where developer writes the code based on requirements, makes page dynamic, uses injections and data bindings.
+Modules: These are logical pieces of code and each code performs a single task.
+	modules declare which components can be used by components belonging to other modules, 
+	^^^which classes will be injected by the dependency injector and which component gets bootstrapped. 
+	Modules allow you to manage your components to bring modularity to your app.
+	-->@ngModule in app.module.ts
+	--> imports option is used to import dependent modules for our application (defualt browser module) hhtp module, routing module, forms module.
+	--> declarations option is used to to define the components in respective module.
+	--> bootstrap option is used to tell in which component the bootstrap has to be applied.
+	--> providers option is used to inject the extra features like data transfer services.
+Templates: These are the views of Angular appplication. where complete HTML code is exist (either inline or file)
+	@Component ({
+	   selector: 'my-app',
+	   templateUrl: 'app/app.component.html'
+	})
+Services: These are used to share the common functionality across modules in the entire application,
+		 http servives get responses from server as well.
+	
+Metadata: These are used to decorte the class so that it can configure the expected behaviour of class.
+	--> in TS files metadata is attached to component with decorataors like @component
+		@Component({ selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.css'] })
+
+--------------What are directives?
+These are the added behavior to an existing DOM elements, data binding to scope, replace or to extend the HTMl elements.
+Directives are nothing but ther are angular syntaxes inside html which goes and change the behavior of HTML
+SAC directives 
+structural directives: These are to change the DOM layout by adding or removing the DOM elements (ngIf ngFor)
+attribute directives: These are used to change the appearance and behavior of DOM elements ([hidden] [disabled] ngShow ngHide colors )
+component directives: These are the directives with templates. own reusable components <my-grid>
+			ng g directive changeText
+			<span changeText >Welcome to {{title}}.</span> 
+			
+-------------what are decorators or annotations and metadata
+Decorator defines to angular like what kind of class is this.
+for example, if you decorate the class with @Component then it says this is angular component
+if you decorate the class with @ngModule then it says this is angular module
+if no decorator is defined then it is a normal type script class.
+
+--------------Types of Decorators?
+Metadata is respresented by decorators.
+All these decorataors are imported from angular core
+Class decorataors: @component @ngModule
+Property decorataors: @input @output
+Method decorataors: @hostListener
+parameter decorataors: @inject services
+
+--------------What are lifecycle hooks in Angular?
+Lifecycle hooks in angular are nothing but the lifecycle of components and directives managed in anular applicaiton.
+like creates checks updates renders and destroys.
+Importance: 
+^^^Angular exposes a lot of events so perform ur custom code we use these lifecycle hooks.
+the flow of life cycle hooks are :
+component level--> content project level --> main view 
+ngOnChanges
+ngOnInit
+ngDoCheck
+	ngAfterContentInit
+	ngAfterContentChecked
+		(childs process)
+	ngAfterViewInit
+	ngAfterViewChecked
+ngOnDestroy
+
+ngOnChanges: When the value of data bound proerty changes this is called.(obj references changed)
+ngOnInit: When Component or Directive initializes 
+ngDoCheck: This is to detect any changes in application where Angular wont detect on its own
+			example: like when parent is being checked and it calls the ngDoCheck on its child component to check the updations 
+			in child components and updated the DOM interpolations in parent cmponent
+ngAfterContentInit: This is called in response after angular project external content in to component view.
+ngAfterContentChecked: This is called in response after angular checks the content projected in the component
+ngAfterViewInit: This is called in response after angular initializes the components views and child views
+ngAfterViewChecked: This is called in reponse after angular checks the components views and child views
+ngOnDestroy: This is cleanup phase just before angular destroy the directive/ component.
+
+
+--content projection: Content projection is the ability to put HTML elements between the opening and closing tag of a component selector
+
+-------------what is Data Binding?
+The communication between component and DOM elements (view)or in other words its like way of data flowing in btwn them.
+Interpoaltion: 	which is a string interpolation, text with set of double curly braces and value in this text will be displayed  {{name}}
+property binding: which assigns the value into html attribute like [value] [src] [href] [class] [style]
+	--> difference between interpolation and property binding, interpolation supports only strings
+Event Binding: when a specific DOM event happens like (click)(change)(keyup) passes data from view to component
+Two way binding: allows data flow in both ways[(ngModel)] , combination of property and event binding
+
+template expressions {{name}} name is expressions, [url]='path' path is expressions
+template statements (click)='doSomething()' doSomething is statement
+What are enums?
+Enums allow you to define a set of named constants that are tied to and can be used in place of associated numeric constants.
+
+-----------Whats is SPA, Single Page Applications?
+it is a concept where the main UI load once and it wont relad it againa and again.
+implementation of SPA is by using routing
+
+-----------What is routing?
+Routing is to define the navigations in angular application, if user wants to navigate from one component to other
+router paths
+<router-outlet> </router-outlet>
+routerLink or this.router.navigate
+
+-----------What is the difference between constructor and ngOnInit?
+TypeScript classes has a default method called constructor which is normally used for the initialization purpose. 
+Whereas ngOnInit method is specific to Angular, especially used to define Angular bindings. 
+Even though constructor getting called first, it is preferred to move all of your Angular bindings to ngOnInit method.
+while contructor loaded no DOM elements are loaded yet and while ngOnInit is loaded all DOM elements are loaded before this so elements are accessable
+
+-----------What is dependency injection in Angular?
+Dependency injection is a mechanisam where we inject services rather creating new keyword.
+decoupled service, change at one place rather than everywhere
+^^^Dependency injection (DI), is an important application design pattern in which a class asks for dependencies 
+	from external sources rather than creating them inside the component where ever it needs. 
+Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).
+So you can have your services depend on other services throughout your application.
+--> define service class
+--> regsiter with injector
+--> declare as dependency in the required components
+
+------------why we need of DI?
+it is like decouple the class of dependencies, so that when you add new dependencies you dont have to add everywhere.
+if not DI then as you see when developer uses with new keyword and instanting the service. every where it has to be change.
+
+-----------How is Dependency hierarchy formed?
+if dependency is injected to any component then all the dependencies were used in that component and child components in it
+hence if we want to use in complete application it is advised to inject in app.module.ts which is root for application
+^^^if we inject in one component then all childs in that component have access to it.
+
+-----------What are pipes?
+pipes take data as input and transforms the data into desires output.
+{{name | uppercase}}
+parameterized pipes- {{ date | date:'dd/mm/yyyy'}} defining the format is parameterized pipe 
+chain pipes- {{date | date:'fullDate' | uppercase}} combination of multiple pipes
+
+-----------What is custom pipe?
+custom pipes are pipes which are user defind pipes by using pipeTransform method and with pipe metadata @pipe decorator
+	@Pipe({name: 'myCustomPipe'})
+	template: `{{someInputValue | myCustomPipe: someOtherValue}}`
+	interface PipeTransform {
+	  transform(value: any, ...args: any[]): any
+	}
+
+------------What is the purpose of async pipe?
+Async pipe subscribes to an observable or promise to return the latest emitted value. and asks component to check for changes
+Time: {{ time | async }}
+time = new Observable(observer =>
+    setInterval(() => observer.next(new Date().toString()), 2000)
+  );
+ 
+------------What is the difference between pure and impure pipe?
+Pure pipe is called only when angular detects a change in value or the parameters passed in pipe.
+@Pipe({name: 'myPipe', pure: true})
+^^ ts: myVariable : any = { propertyA : "foo"};
+^^ dom: {{ myVariable | myPipe }}
+^^ when instance is changed like myVariable = { propertyA : "bar"} this then pure pipe runs again but not when value changed like this myVariable.propertyA = "bar";
+Impure pipe is called often for every change no matter what the change is like mouse move, keystroke etc 
+@Pipe({name: 'myPipe', pure: false})
+Impure pipes to detect “deep” changes
+^^ to control the impure pipe we have to pass input params -->transform(myVariable : any, inputParam : any)
+^^ {{ myVariable | myPipe:myVariable.propertyA }}
+good examples of impure pipes are JSON pipe, SlicePipe, KeyValuePipe
+
+-----------What is difference between Promise and Observable?
+Promise emits a single output where as Observable emits a stream of outputs over a period of time
+Promise runs automatically where as observable calls only until we subscribe to observable
+promise have 2 parameters, response and rejected where as observable has 3 parameters, next, error and complete()
+promise is used with .then() where as observable is used with .subscribe()
+promise cannot be cancelled where as observable can be cancelled by using unsubscribe menthod.
+observables supports opertors like filter map forEach reduce etc.
+
+myObservable.subscribe({
+  next(num) { console.log('Next num: ' + num)},
+  error(err) { console.log('Received an errror: ' + err)},
+  complete: () => console.log('Observer got a complete notification')
+});
+
+homeService.getFoodItem()
+	.then((data) => {this.foodItem = data},
+			(err)=> {this.error=err}
+);
+	
+
+-----------Eager Loading vs Lazy Loading(onDemand loading) vs Preloading
+Eager loading: Modules under eager loading will be loaded before the application starts
+	starts slow but later app will be faster as all modules loaded (prefered for smaller applciations)
+Lazy loading: Modules under lazy loading will be loaded after the application starts based on demand.
+	starts faster and loads remaining modules based on demand.
+	1. divide the project in to seperate seperate modules.
+	2. define loadChildren for those lazy loading has to be applied
+	path: children loadChildren: childComponent
+Pre loading: modules under pre laoding will be loaded automatically after applicaiton starts (pre-requiste modules once app starts) 
+	
+------------What happens if you use script tag inside template?
+Angular automatically sanitizes it and keeps the content inside the script tag.
+This actually eliminates the injection attacks
+
+-------------Importance of npm and node modules folder
+npm- node package manager it used to install the javascript framework easily 
+(npm install jquery, npm install express, npm install mongoose)
+node_modules is the folder where all packages were installed
+
+------------Importance of package.json 
+it has all the references needed for a project. So rather than installing one package at a time, 
+we can install all packages in one go
+
+------------What is CLI ?
+command line interface 
+it helps to create a readymade angular template rather than starting from scratch. (its like a boiler code)
+npm install @angular/cli
+ng new myapp
+
+-----------what is ng serve and ng build
+ng serve builds in memory where as ng build builds on hard disk. so when you want to go for production use ng build.
+
+ng --prod , it makes the applciation ready for production. its like it removes all comments and comporesses ur js files.
+it tries to makes most compressed code and minify as much as possible.
+
+------------constructor vs ngOnInit
+constructor is a concept of typescript. its called by JavaScript framework
+ngOnInit is concept of angular. Its an angular event. its called ny Angular framework
+**constructor loads first then all DOMS bindings initializes and ngOnInit loads, so
+	when constructor loads no DOM elemnts are loaded yet.
+
+------------what kind of code goes into constructor and ngOnInit
+constructor used to initializes the classes and do dependency injection
+ngOnInit used to access the DOM elements, do some events like disabling etc
+
+------------canAvtivate / AuthGuard
+like security checks allows the navigation or not 
+preprocessing before navigating to the component
+ActivatedRouteSnapshot
+
+admin component 
+path: admin, component: adminComponent canAvtivate:[AuthGuard]
+
+
+------------subject in angular
+Subject are like event emitters.
+Subject is a special type of Observable in RxJs Library in which we can send our data to other components or services. 
+^^^ subjects holds only one value to holds more values we have to use ReplaySubject 
+^^^ A Subject is like an Observable but can multicast to many observers which means subject is at the same time 
+	an Observable and an Observer.
+component file
+	get data
+		this.DataSharing.SharingData.subscribe((res: any) => {  this.Component2Data = res;  })  
+	send data
+		this.DataSharing.SharingData.next(data.value);  
+service file
+	export class DataSharingService {   
+		SharingData = new Subject();  
+		constructor() { }  }
+
+--------behavioral subject
+Behavior Subject is similar to subject but only difference is that we can set the initial value.
+	const subject =new BehaviorSubject(0);
+
+----------subject vs observable
+An observable allows you to subscribe only whereas a subject allows you to both publish and subscribe. 
+^^^So a subject allows your services to be used as both a publisher and a subscriber.
+
+	┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ 
+	┃         Observable                  ┃     BehaviorSubject/Subject         ┃      
+	┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ 
+	┃ Is just a function, no state        ┃ Has state. Stores data in memory    ┃
+	┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+	┃ Code run for each observer          ┃ Same code run                       ┃
+	┃                                     ┃ only once for all observers         ┃
+	┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+	┃ Creates only Observable             ┃Can create and also listen Observable┃
+	┃ ( data producer alone )             ┃ ( data producer and consumer )      ┃
+	┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+	┃ Usage: Simple Observable with only  ┃ Usage:                              ┃
+	┃ one Obeserver.                      ┃ * Store data and modify frequently  ┃
+	┃                                     ┃ * Multiple observers listen to data ┃
+	┃                                     ┃ * Proxy between Observable  and     ┃
+	┃                                     ┃   Observer                          ┃
+	┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+	
+---------------http client
+to communicate between front end and backend we use protocals named http protocals
+which is like XMLHttpRequest 
+
+^^^to get full reponse from http we have use observable at funciton name getUserResponse(): Observable<HttpResponse<User>> {}
+^^^HttpClient.get() method returns an Observable of typed HttpResponse rather than just the JSON data.
+
+-------------- short hand notation of subscribe
+	myObservable.subscribe(
+	  x => console.log('Observer got a next value: ' + x),
+	  err => console.error('Observer got an error: ' + err),
+	  () => console.log('Observer got a complete notification')
+	);
+	
+-------------- 	What are the utility functions provided by RxJS?
+utility functions are for creating and working with observables
+--> converting the existing code for async operations in to observables
+--> iterating through the values in the stream
+--> mapping values to different types
+--> filtering streams
+--> composing multiple streams
+
+------------ what are observable creation functions?
+--> create an observable for a promise
+--> create an observable from an ajax request
+--> create an observable from counter
+--> create an observable from event
+
+
+------------What are dynamic components?
+Dynamic components are the components in which components location in the application is not defined at build time.i.e, 
+They are not used in any angular template. But the component is instantiated and placed in the application at runtime.
+
+
+  ngOnInit(): void {
+    this.viewContainerRef.clear();
+    const cat = this.member as Cat;
+    const dog = this.member as Dog;
+    if (cat.favoriteComfyPlace) {
+      const catComponentFactory = this.componentFactoryResolver.resolveComponentFactory(CatItemComponent);
+      const componentRef = this.viewContainerRef.createComponent(catComponentFactory);
+      componentRef.instance.member = cat;
+    } else if (dog.favoritePark) {
+      const dogComponentFactory = this.componentFactoryResolver.resolveComponentFactory(DogItemComponent);
+      const componentRef = this.viewContainerRef.createComponent(dogComponentFactory);
+      componentRef.instance.member = dog;
+    }
+  }
+  
+-------------The 7-step process of Angular router navigation
+	Parse
+	Redirect
+	Identify
+	Guard
+	Resolve
+	Activate
+	Manage
+
+------------ what are router events?
+The Angular Routers triggers several events starting with when the Navigation starts ( NavigationStart ) 
+and also when the Navigation end ( NavigationEnd ) successfully. 
+It is triggered when the navigation is canceled either by the user ( NavigationCancel ) or due to an error in the navigation ( NavigationError). 
+The Events trigger when the lazy loaded modules are about to load and when they finish loading. 
+They trigger before and after the guards like canActivate, canActivateChild. Events fire before and after the Angular runs the Route Resolvers..
+		
+		NavigationStart	---------	the Angular router stats the navigation.
+		RouteConfigLoadStart-----	the Router lazy loads a route configuration.
+		RouteConfigLoadEnd	-----	after a route has been lazy-loaded.
+		RoutesRecognized	-----	the Router parses the URL and the routes are recognized.
+		GuardsCheckStart	-----	the Router begins the Guards phase of routing.
+		ChildActivationStart-----	the Router begins activating a route's children.
+		ActivationStart	---------	the Router begins activating a route.
+		GuardsCheckEnd	---------	the Router finishes the Guards phase of routing successfully.
+		ResolveStart	---------	the Router begins the Resolve phase of routing.
+		ResolveEnd	-------------	the Router finishes the Resolve phase of routing successfully.
+		ChildActivationEnd	-----	the Router finishes activating a route's children.
+		ActivationEnd	---------	the Router finishes activating a route.
+		NavigationEnd	---------	navigation ends successfully.
+		NavigationCancel	-----	navigation is canceled. This is due to a Route Guard returning false during navigation.
+		NavigationError ---------	navigation fails due to an unexpected error.
+		^^^Scroll	-------------	An event that represents a scrolling event.
+
+-------------- what is router state?
+RouterState is a tree of activated routes. Every node in this tree knows about the consumed URL segments, the extracted parameters, and the resolved data. 
+You can access the current RouterState from anywhere in the application using the Router service and the routerState property.
+^^^^ Parse the browser URL
+	/section-one;test=one/(nav:navigation;test=two//main:about;test=three)?query=four#frag
+		/ slashes divide URL segments
+		() parentheses specify secondary routes
+		: a colon specifies a named router outlet
+		; a semicolon specifies a matrix parameter
+		? a question mark separates the query string parameters
+		# a hashtag specifies the fragment
+		// a double slash separates multiple secondary routes
+	
+------------- difference between local redirect and absolute redirect
+local redirect is without like replaces the single url segment, no slash { path: 'one', redirectTo: 'two' } 
+		example: http:local/samsung/tv to http:local/samsung/refrigirators
+absolute redirect is like replacing the entire url, starts with slash { path: 'one', redirectTo: '/two' }	
+		example: http:local/samsung/tv  to http:local/sony/sounds
+
